@@ -159,13 +159,23 @@ _force_prepend_to_path() {
 _force_prepend_to_path /usr/local/sbin
 _force_prepend_to_path /usr/local/bin
 _force_prepend_to_path ~/bin
-_force_prepend_to_path /usr/local/heroku/bin
 
-_append_to_path /usr/games
 _append_to_path /usr/sbin
+_append_to_path /usr/local/opt/go/libexec/bin
+_append_to_path /usr/local/opt/go/libexec/bin
+_append_to_path /usr/local/opt/python/libexec/bin
+
 
 # Add our docs, too
 export INFOPATH=$HOME/.dotfiles/info:$INFOPATH
+export GOPATH=$HOME/go
+
+# gcloud stuff:
+source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
+source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
+
+_append_to_path ~/dev/istio/bin
+
 
 # ALIASES {{{1
 
@@ -838,3 +848,5 @@ fi
 
 # Don't end with errors.
 true
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
