@@ -845,6 +845,14 @@ if [ -e ~/.zshlocal ]; then
 fi
 
 # }}} Done.
+# OH-MY-ZSH integration {{{1
+
+export ZSH=/Users/steve/.dotfiles/oh-my-zsh
+ZSH_THEME="agnoster"
+plugins=(git, docker)
+
+source $ZSH/oh-my-zsh.sh
+
 
 # Don't end with errors.
 true
