@@ -4,7 +4,7 @@
 [user]
 	name = Steve McGhee
 	email = steve@mcgheemail.com
-#	signingkey = 0x6704627BC76DBFA8
+	signingkey = 0x3C60317C494CB754
 [core]
 	editor = vim
 	pager = less -FRX
