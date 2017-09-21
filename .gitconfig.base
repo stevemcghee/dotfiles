@@ -2,9 +2,9 @@
 # NOTE: This file is renamed to .gitconfig by my install script.
 # 
 [user]
-	name = Ian Langworth ☠>
-	email = ian@langworth.com
-	signingkey = 0x6704627BC76DBFA8
+	name = Steve McGhee
+	email = steve@mcgheemail.com
+#	signingkey = 0x6704627BC76DBFA8
 [core]
 	editor = vim
 	pager = less -FRX
@@ -12,7 +12,7 @@
 [gist]
 	private = yes
 [github]
-	user = statico
+	user = stevemcghee
 [alias]
 	am = commit --amend --no-edit
 	ama = commit --amend --no-edit -a
