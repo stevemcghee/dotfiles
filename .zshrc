@@ -171,10 +171,12 @@ export INFOPATH=$HOME/.dotfiles/info:$INFOPATH
 export GOPATH=$HOME/go
 
 # gcloud stuff:
-source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
-source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
+# for homebrew
+_append_to_path ~/homebrew/bin
+export LD_LIBRARY_PATH=$HOME/homebrew/lib:$LD_LIBRARY_PATH
 
-_append_to_path ~/dev/istio/bin
+_append_to_path ~/bin
+
 
 
 # ALIASES {{{1
@@ -265,7 +267,7 @@ alias icat='lsbom -f -l -s -pf'
 alias iinstall='sudo installer -target / -pkg'
 alias ils='ls /var/db/receipts/'
 alias ishow='pkgutil --files'
-alias k='tree -h'
+alias k='kubectl'
 alias l="ls -lh"
 alias ll="l -a"
 alias lt='ls -lt'
@@ -640,6 +642,19 @@ fi
 # resizing a terminal. The solution is to have precmd() print the first line
 # and set PS1 to the second line. See: http://xrl.us/bf3wh
 
+# gcp-cloud-prompt
+autoload -Uz colors; colors
+source $HOME/src/zsh-gcloud-prompt/gcloud.zsh
+GCP_RPROMPT='%{$fg[cyan]%}($ZSH_GCLOUD_PROMPT)%{$reset_color%}'
+
+# kubectl prompt
+#autoload -U colors; colors
+source $HOME/src/zsh-kubectl-prompt/kubectl.zsh
+K8S_RPROMPT='%{$fg[blue]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}'
+
+RPROMPT="$GCP_RPROMPT $K8S_RPROMPT"
+
+
 colorprompt() {
   if ! _color; then
     uncolorprompt
@@ -652,6 +667,7 @@ colorprompt() {
     "%{[${__prompt_mode}m%}%~"
     "%(1j.%{[36;1m%} ● %j jobs%{[0m%}.)"
     "%(?..%{[31;1m%} ▲ error %?%{[0m%})"
+    "${L1_RPROMPT}"
   )
   local -a line2
   line2=(
@@ -847,9 +863,8 @@ fi
 # }}} Done.
 # OH-MY-ZSH integration {{{1
 
-export ZSH=/Users/steve/.dotfiles/oh-my-zsh
+export ZSH=/Users/${USER}/.dotfiles/oh-my-zsh
 ZSH_THEME="agnoster"
-plugins=(git, docker)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -858,3 +873,10 @@ source $ZSH/oh-my-zsh.sh
 true
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/smcghee/src/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/smcghee/src/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/smcghee/src/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/smcghee/src/google-cloud-sdk/completion.zsh.inc'; fi
