@@ -299,6 +299,7 @@ alias wgetdir='wget -r -l1 -P035 -nd --no-parent'
 alias whois='whois -h geektools.com'
 alias x='screen -A -x'
 alias xxx='histring "XXX.*" -c green -s bold'
+eval $(thefuck --alias)
 
 # Interactive/verbose commands.
 alias mv='mv -i'
@@ -863,7 +864,7 @@ fi
 # }}} Done.
 # OH-MY-ZSH integration {{{1
 
-export ZSH=/Users/${USER}/.dotfiles/oh-my-zsh
+export ZSH=/Users/${USER}/.dotfiles/ohmyzsh
 ZSH_THEME="agnoster"
 
 source $ZSH/oh-my-zsh.sh
